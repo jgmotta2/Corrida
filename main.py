@@ -51,7 +51,7 @@ while True:
     
     if movXCar1 > 1000:
         movXCar1 = 0
-        posYCar1 = 320
+        posYCar1 = 330
         
     if movXCar2 > 1000:
         movXCar2 = 0
@@ -64,13 +64,18 @@ while True:
     fonte = pygame.font.Font("freesansbold.ttf",60)
     textoVermelho = fonte.render("Vermelho Ganhou!", True, branco)
     textoAmarelo = fonte.render("Amarelo Ganhou!", True, branco)
+    textoAzul = fonte.render("Azul Ganhou!", True, branco)
     
-    if posYCar1 == 350 and movXCar1 >= 900 and movXCar1 > movXCar2:
+    if posYCar1 == 320 and movXCar1 >= 900 and movXCar1 > movXCar2:
         tela.blit(textoVermelho, (270,70))
         acabou = True
         
-    elif posYCar2 == 480 and movXCar2 >= 900 and movXCar2 > movXCar1:
-        tela.blit(textoAmarelo, (270,180))
+    elif posYCar2 == 500 and movXCar2 >= 900 and movXCar2 > movXCar1:
+        tela.blit(textoAmarelo, (270,300))
+        acabou = True
+        
+    elif posYcar3 == 400 and movXcar3 >= 900 and movXcar3 > movXCar1 and movXcar3 > movXCar2:
+        tela.blit(textoAzul, (270, 180))
         acabou = True
     
     
