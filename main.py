@@ -12,11 +12,15 @@ preta = (0,0,0)
 fundo = pygame.image.load("assets/fundo.png")
 carro1 = pygame.image.load("assets/carro1.png")
 carro2 = pygame.image.load("assets/carro2.png")
+carro3 = pygame.image.load("assets/carro3.png")
 
 movXCar1 = 0
 movXCar2 = 0
-posYCar1 = 50
-posYCar2 = 180
+movXcar3 = 0
+posYCar1 = 30
+posYCar2 = 210
+posYcar3 = 110
+
 vitoria = pygame.mixer.Sound("assets/vitoria.mp3")
 vitoria.set_volume(0.5)
 pygame.mixer.music.load("assets/trilha.mp3")
@@ -32,10 +36,12 @@ while True:
     tela.blit(fundo, (0,0))
     tela.blit(carro1, (movXCar1,posYCar1))
     tela.blit(carro2, (movXCar2,posYCar2))
+    tela.blit(carro3, (movXcar3, posYcar3))
     
     if not acabou :
         movXCar1 = movXCar1 + random.randint(0,10)
         movXCar2 = movXCar2 + random.randint(0,10)
+        movXcar3 = movXcar3 + random.randint (0,10)
     else:
         pygame.mixer.music.stop()
         if somDaVitoria == False:
@@ -45,11 +51,15 @@ while True:
     
     if movXCar1 > 1000:
         movXCar1 = 0
-        posYCar1 = 350
+        posYCar1 = 320
         
     if movXCar2 > 1000:
         movXCar2 = 0
-        posYCar2 = 480
+        posYCar2 = 500
+    
+    if movXcar3 > 1000:
+        movXcar3 = 0
+        posYcar3 = 400
     
     fonte = pygame.font.Font("freesansbold.ttf",60)
     textoVermelho = fonte.render("Vermelho Ganhou!", True, branco)
