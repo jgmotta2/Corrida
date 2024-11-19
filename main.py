@@ -1,7 +1,8 @@
 import pygame
 import random
+from funcoes import limparTela
 pygame.init()
-tamanho = (1000,592)
+tamanho = (880,521)
 clock = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanho )
 icone = pygame.image.load("assets/icone.ico")
@@ -13,13 +14,14 @@ fundo = pygame.image.load("assets/fundo.png")
 carro1 = pygame.image.load("assets/carro1.png")
 carro2 = pygame.image.load("assets/carro2.png")
 carro3 = pygame.image.load("assets/carro3.png")
+telaDeVitoria = pygame.image.load("assets/papapa.png")
 
 movXCar1 = 0
 movXCar2 = 0
 movXcar3 = 0
-posYCar1 = 30
-posYCar2 = 210
-posYcar3 = 110
+posYCar1 = 25
+posYCar2 = 170
+posYcar3 = 90
 
 vitoria = pygame.mixer.Sound("assets/vitoria.mp3")
 vitoria.set_volume(0.5)
@@ -49,35 +51,39 @@ while True:
             somDaVitoria = True
         
     
-    if movXCar1 > 1000:
+    if movXCar1 > 880:
         movXCar1 = 0
-        posYCar1 = 330
+        posYCar1 = 290
         
-    if movXCar2 > 1000:
+    if movXCar2 > 880:
         movXCar2 = 0
-        posYCar2 = 500
+        posYCar2 = 430
     
-    if movXcar3 > 1000:
+    if movXcar3 > 880:
         movXcar3 = 0
-        posYcar3 = 400
+        posYcar3 = 355
     
     fonte = pygame.font.Font("freesansbold.ttf",60)
     textoVermelho = fonte.render("Vermelho Ganhou!", True, branco)
     textoAmarelo = fonte.render("Amarelo Ganhou!", True, branco)
     textoAzul = fonte.render("Azul Ganhou!", True, branco)
     
-    if posYCar1 == 320 and movXCar1 >= 900 and movXCar1 > movXCar2:
-        tela.blit(textoVermelho, (270,70))
+    if posYCar1 == 290 and movXCar1 >= 800 and movXCar1 > movXCar2:
+        tela.blit(telaDeVitoria, (0,0))
         acabou = True
         
-    elif posYCar2 == 500 and movXCar2 >= 900 and movXCar2 > movXCar1:
-        tela.blit(textoAmarelo, (270,300))
+    elif posYCar2 == 430 and movXCar2 >= 800 and movXCar2 > movXCar1:
+        tela.blit(telaDeVitoria, (0,0))
         acabou = True
         
-    elif posYcar3 == 400 and movXcar3 >= 900 and movXcar3 > movXCar1 and movXcar3 > movXCar2:
-        tela.blit(textoAzul, (270, 180))
+    elif posYcar3 == 355 and movXcar3 >= 800 and movXcar3 > movXCar1 and movXcar3 > movXCar2:
+        tela.blit(telaDeVitoria, (0,0))
         acabou = True
-    
+        
+
+
+        
+        
     
     pygame.display.update()
     clock.tick(60)
