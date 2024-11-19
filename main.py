@@ -1,6 +1,6 @@
 import pygame
 import random
-from funcoes import limparTela
+from funcoes import limparTela, returnVencedor, returnSegundo, returnTerceiro
 pygame.init()
 tamanho = (880,521)
 clock = pygame.time.Clock()
@@ -41,7 +41,7 @@ while True:
     tela.blit(carro3, (movXcar3, posYcar3))
     
     if not acabou :
-        movXCar1 = movXCar1 + random.randint(0,10)
+        movXCar1 = movXCar1 + random.randint(2,10)
         movXCar2 = movXCar2 + random.randint(0,10)
         movXcar3 = movXcar3 + random.randint (0,10)
     else:
@@ -63,14 +63,13 @@ while True:
         movXcar3 = 0
         posYcar3 = 355
     
-    fonte = pygame.font.Font("freesansbold.ttf",60)
-    textoVermelho = fonte.render("Vermelho Ganhou!", True, branco)
-    textoAmarelo = fonte.render("Amarelo Ganhou!", True, branco)
-    textoAzul = fonte.render("Azul Ganhou!", True, branco)
-    
-    if posYCar1 == 290 and movXCar1 >= 800 and movXCar1 > movXCar2:
+
+    if posYCar1 == 290 and movXCar1 >= 800 and movXCar1 > movXCar2 > movXcar3:
         tela.blit(telaDeVitoria, (0,0))
         acabou = True
+        tela.blit(returnVencedor("Vermelho"), (100,150))
+        tela.blit(returnSegundo("Amarelo"), (100,200))
+        tela.blit(returnTerceiro("Azul"), (100,250))
         
     elif posYCar2 == 430 and movXCar2 >= 800 and movXCar2 > movXCar1:
         tela.blit(telaDeVitoria, (0,0))
