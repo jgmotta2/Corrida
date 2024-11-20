@@ -1,6 +1,6 @@
 import pygame
 import random
-from funcoes import limparTela, returnVencedor, returnSegundo, returnTerceiro
+from funcoes import returnVencedor, returnSegundo, returnTerceiro, placar1, placar2, placar3
 pygame.init()
 tamanho = (880,521)
 clock = pygame.time.Clock()
@@ -9,7 +9,7 @@ icone = pygame.image.load("assets/icone.ico")
 pygame.display.set_icon(icone)
 pygame.display.set_caption("Corrida Maluca")
 branco = (255,255,255)
-preta = (0,0,0)
+preto = (0,0,0)
 fundo = pygame.image.load("assets/fundo.png")
 carro1 = pygame.image.load("assets/carro1.png")
 carro2 = pygame.image.load("assets/carro2.png")
@@ -65,6 +65,51 @@ while True:
     if movXCar3 > 880:
         movXCar3 = 0
         posYCar3 = 355
+    
+    if movXCar1 > movXCar2 and movXCar1 > movXCar3:
+        Primeiro = "Vermelho"
+        if movXCar2 > movXCar3:
+            Segundo = "Amarelo"
+            Terceiro = "Azul"
+            dist_primeiro_segundo = movXCar1 - movXCar2
+            dist_segundo_terceiro = movXCar2 - movXCar3
+        else:
+            Segundo = "Azul"
+            Terceiro = "Amarelo"
+            dist_primeiro_segundo = movXCar1 - movXCar3
+            dist_segundo_terceiro = movXCar3 - movXCar2
+            
+    elif movXCar2 > movXCar1 and movXCar2 > movXCar3:
+        Primeiro = "Amarelo"
+        if movXCar1 > movXCar3:
+            Segundo = "Vermelho"
+            Terceiro = "Azul"
+            dist_primeiro_segundo = movXCar2 - movXCar1
+            dist_segundo_terceiro = movXCar1 - movXCar3
+        else:
+            Segundo = "Azul"
+            Terceiro = "Vermelho"
+            dist_primeiro_segundo = movXCar2 - movXCar3
+            dist_segundo_terceiro = movXCar3 - movXCar1
+            
+    else:
+        Primeiro = "Azul"
+        if movXCar1 > movXCar2:
+            Segundo = "Vermelho"
+            Terceiro = "Amarelo"
+            dist_primeiro_segundo = movXCar3 - movXCar1
+            dist_segundo_terceiro = movXCar1 - movXCar2
+        else:
+            Segundo = "Amarelo"
+            Terceiro = "Vermelho"
+            dist_primeiro_segundo = movXCar3 - movXCar2
+            dist_segundo_terceiro = movXCar2 - movXCar1
+    
+    tela.blit(placar1(Primeiro), (100, 200))
+    tela.blit(placar2(Segundo), (100, 250))
+    tela.blit(placar3(Terceiro), (100, 300))
+    
+
     
 
     if posYCar1 == 290 and movXCar1 >= 800 and (movXCar1 > movXCar2 > movXCar3 or movXCar1 > movXCar3 > movXCar2):
