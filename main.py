@@ -5,16 +5,16 @@ pygame.init()
 tamanho = (880,521)
 clock = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanho )
-icone = pygame.image.load("assets/icone.ico")
+icone = pygame.image.load("recursos/icone.ico")
 pygame.display.set_icon(icone)
 pygame.display.set_caption("Corrida Maluca")
 branco = (255,255,255)
 preto = (0,0,0)
-fundo = pygame.image.load("assets/fundo.png")
-carro1 = pygame.image.load("assets/carro1.png")
-carro2 = pygame.image.load("assets/carro2.png")
-carro3 = pygame.image.load("assets/carro3.png")
-telaDeVitoria = pygame.image.load("assets/papapa.png")
+fundo = pygame.image.load("recursos/fundo.png")
+carro1 = pygame.image.load("recursos/carro1.png")
+carro2 = pygame.image.load("recursos/carro2.png")
+carro3 = pygame.image.load("recursos/carro3.png")
+telaDeVitoria = pygame.image.load("recursos/finaldacorrida.png")
 fonte = pygame.font.Font("freesansbold.ttf", 80)
 fonte2 = pygame.font.Font("freesansbold.ttf", 10)
 ranking = fonte.render("Ranking ", True, (branco))
@@ -26,9 +26,9 @@ posYCar1 = 25
 posYCar2 = 170
 posYCar3 = 90
 
-vitoria = pygame.mixer.Sound("assets/vitoria.mp3")
+vitoria = pygame.mixer.Sound("recursos/vitoria.mp3")
 vitoria.set_volume(0.5)
-pygame.mixer.music.load("assets/trilha.mp3")
+pygame.mixer.music.load("recursos/trilha.mp3")
 pygame.mixer.music.play(-1) #-1 looping, 1,2 3 vezes
 acabou = False
 somDaVitoria = False
