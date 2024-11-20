@@ -16,6 +16,7 @@ carro2 = pygame.image.load("assets/carro2.png")
 carro3 = pygame.image.load("assets/carro3.png")
 telaDeVitoria = pygame.image.load("assets/papapa.png")
 fonte = pygame.font.Font("freesansbold.ttf", 50)
+fonte2 = pygame.font.Font("freesansbold.ttf", 10)
 ranking = fonte.render("Ranking: ", True, (branco))
 
 
@@ -73,11 +74,13 @@ while True:
             Terceiro = "Azul"
             dist_primeiro_segundo = movXCar1 - movXCar2
             dist_segundo_terceiro = movXCar2 - movXCar3
+            dist_terceiro_primeiro = movXCar1 - movXCar3
         else:
             Segundo = "Azul"
             Terceiro = "Amarelo"
             dist_primeiro_segundo = movXCar1 - movXCar3
             dist_segundo_terceiro = movXCar3 - movXCar2
+            dist_terceiro_primeiro = movXCar1 - movXCar2
             
     elif movXCar2 > movXCar1 and movXCar2 > movXCar3:
         Primeiro = "Amarelo"
@@ -86,11 +89,13 @@ while True:
             Terceiro = "Azul"
             dist_primeiro_segundo = movXCar2 - movXCar1
             dist_segundo_terceiro = movXCar1 - movXCar3
+            dist_terceiro_primeiro = movXCar2 - movXCar3
         else:
             Segundo = "Azul"
             Terceiro = "Vermelho"
             dist_primeiro_segundo = movXCar2 - movXCar3
             dist_segundo_terceiro = movXCar3 - movXCar1
+            dist_terceiro_primeiro = movXCar2 - movXCar1
             
     else:
         Primeiro = "Azul"
@@ -99,19 +104,28 @@ while True:
             Terceiro = "Amarelo"
             dist_primeiro_segundo = movXCar3 - movXCar1
             dist_segundo_terceiro = movXCar1 - movXCar2
+            dist_terceiro_primeiro = movXCar3 - movXCar2
         else:
             Segundo = "Amarelo"
             Terceiro = "Vermelho"
             dist_primeiro_segundo = movXCar3 - movXCar2
             dist_segundo_terceiro = movXCar2 - movXCar1
+            dist_terceiro_primeiro = movXCar3 - movXCar1
+            
+    tela.blit(placar1(Primeiro), (600, 25))
+    tela.blit(placar2(Segundo), (600, 45))
+    tela.blit(placar3(Terceiro), (600, 65))
     
-    tela.blit(placar1(Primeiro), (100, 200))
-    tela.blit(placar2(Segundo), (100, 250))
-    tela.blit(placar3(Terceiro), (100, 300))
+    distancia1e2 = fonte2.render(f"( Distância para o 2ª: {dist_primeiro_segundo}" " )", True, branco)
+    distancia2e3 = fonte2.render(f"( Distância para o 3ª: {dist_segundo_terceiro}" " )",  True, branco)
+    distancia3e1 = fonte2.render(f"( Distância para o 1ª: {dist_terceiro_primeiro}" " )",  True, branco)
     
-
+    tela.blit(distancia1e2, (745, 27))
+    tela.blit(distancia2e3, (745, 48))
+    tela.blit(distancia3e1, (745, 68))
     
-
+    
+    
     if posYCar1 == 290 and movXCar1 >= 800 and (movXCar1 > movXCar2 > movXCar3 or movXCar1 > movXCar3 > movXCar2):
         if movXCar1 > movXCar2 > movXCar3:
             tela.blit(telaDeVitoria, (0,0)) 
