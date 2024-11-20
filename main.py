@@ -44,9 +44,9 @@ while True:
     tela.blit(carro3, (movXCar3, posYCar3))
     
     if not acabou :
-        movXCar1 = movXCar1 + random.randint(0,10)
-        movXCar2 = movXCar2 + random.randint(0,10)
-        movXCar3 = movXCar3 + random.randint (0,10)
+        movXCar1 = movXCar1 + random.randint(0, 8)
+        movXCar2 = movXCar2 + random.randint(0, 8)
+        movXCar3 = movXCar3 + random.randint (0, 8)
     else:
         pygame.mixer.music.stop()
         if somDaVitoria == False:
