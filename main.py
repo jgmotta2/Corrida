@@ -15,13 +15,16 @@ carro1 = pygame.image.load("assets/carro1.png")
 carro2 = pygame.image.load("assets/carro2.png")
 carro3 = pygame.image.load("assets/carro3.png")
 telaDeVitoria = pygame.image.load("assets/papapa.png")
+fonte = pygame.font.Font("freesansbold.ttf", 50)
+ranking = fonte.render("Ranking: ", True, (branco))
+
 
 movXCar1 = 0
 movXCar2 = 0
-movXcar3 = 0
+movXCar3 = 0
 posYCar1 = 25
 posYCar2 = 170
-posYcar3 = 90
+posYCar3 = 90
 
 vitoria = pygame.mixer.Sound("assets/vitoria.mp3")
 vitoria.set_volume(0.5)
@@ -38,12 +41,12 @@ while True:
     tela.blit(fundo, (0,0))
     tela.blit(carro1, (movXCar1,posYCar1))
     tela.blit(carro2, (movXCar2,posYCar2))
-    tela.blit(carro3, (movXcar3, posYcar3))
+    tela.blit(carro3, (movXCar3, posYCar3))
     
     if not acabou :
-        movXCar1 = movXCar1 + random.randint(2,10)
+        movXCar1 = movXCar1 + random.randint(0,10)
         movXCar2 = movXCar2 + random.randint(0,10)
-        movXcar3 = movXcar3 + random.randint (0,10)
+        movXCar3 = movXCar3 + random.randint (0,10)
     else:
         pygame.mixer.music.stop()
         if somDaVitoria == False:
@@ -59,31 +62,60 @@ while True:
         movXCar2 = 0
         posYCar2 = 430
     
-    if movXcar3 > 880:
-        movXcar3 = 0
-        posYcar3 = 355
+    if movXCar3 > 880:
+        movXCar3 = 0
+        posYCar3 = 355
     
 
-    if posYCar1 == 290 and movXCar1 >= 800 and movXCar1 > movXCar2 > movXcar3:
-        tela.blit(telaDeVitoria, (0,0))
-        acabou = True
-        tela.blit(returnVencedor("Vermelho"), (100,150))
-        tela.blit(returnSegundo("Amarelo"), (100,200))
-        tela.blit(returnTerceiro("Azul"), (100,250))
+    if posYCar1 == 290 and movXCar1 >= 800 and (movXCar1 > movXCar2 > movXCar3 or movXCar1 > movXCar3 > movXCar2):
+        if movXCar1 > movXCar2 > movXCar3:
+            tela.blit(telaDeVitoria, (0,0)) 
+            acabou = True
+            tela.blit(ranking, (100, 100))
+            tela.blit(returnVencedor("Vermelho"), (100, 200))
+            tela.blit(returnSegundo("Amarelo"), (100,300))
+            tela.blit(returnTerceiro("Azul"), (100,400))
+        else:
+            tela.blit(telaDeVitoria, (0,0)) 
+            acabou = True
+            tela.blit(ranking, (100, 100))
+            tela.blit(returnVencedor("Vermelho"), (100, 200))
+            tela.blit(returnSegundo("Azul"), (100,300))
+            tela.blit(returnTerceiro("Amarelo"), (100,400))
+            
         
-    elif posYCar2 == 430 and movXCar2 >= 800 and movXCar2 > movXCar1:
-        tela.blit(telaDeVitoria, (0,0))
-        acabou = True
+    elif posYCar2 == 430 and movXCar2 >= 800 and (movXCar2 > movXCar1 > movXCar3 or movXCar2 > movXCar3 > movXCar1):
+        if movXCar2 > movXCar1 > movXCar3:
+            tela.blit(telaDeVitoria, (0,0))
+            acabou = True
+            tela.blit(ranking, (100, 100))
+            tela.blit(returnVencedor("Amarelo"), (100, 200))
+            tela.blit(returnSegundo("Vermelho"), (100,300))
+            tela.blit(returnTerceiro("Azul"), (100,400))
+        else:
+            tela.blit(telaDeVitoria, (0,0)) 
+            acabou = True
+            tela.blit(ranking, (100, 100))
+            tela.blit(returnVencedor("Amarelo"), (100, 200))
+            tela.blit(returnSegundo("Azul"), (100,300))
+            tela.blit(returnTerceiro("Vermelho"), (100,400))
         
-    elif posYcar3 == 355 and movXcar3 >= 800 and movXcar3 > movXCar1 and movXcar3 > movXCar2:
-        tela.blit(telaDeVitoria, (0,0))
-        acabou = True
+    elif posYCar3 == 355 and movXCar3 >= 800 and (movXCar3 > movXCar1 > movXCar2 or movXCar3 > movXCar2 > movXCar1):
+        if movXCar3 > movXCar1 > movXCar2:
+            tela.blit(telaDeVitoria, (0,0))
+            acabou = True
+            tela.blit(ranking, (100, 100))
+            tela.blit(returnVencedor("Azul"), (100, 200))
+            tela.blit(returnSegundo("Vermelho"), (100,300))
+            tela.blit(returnTerceiro("Amarelo"), (100,400))
+        else: 
+            tela.blit(telaDeVitoria, (0,0)) 
+            acabou = True
+            tela.blit(ranking, (100, 100))
+            tela.blit(returnVencedor("Azul"), (100, 200))
+            tela.blit(returnSegundo("Amarelo"), (100,300))
+            tela.blit(returnTerceiro("Vermelho"), (100,400))
         
-
-
-        
-        
-    
     pygame.display.update()
     clock.tick(60)
 pygame.quit()
