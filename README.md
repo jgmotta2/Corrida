@@ -9,4 +9,4 @@ Quem ganhou? Descubra ao final do jogo.
 - Pygame
 - Random
 
-João Gabriel Motta (1137220) & Gustavo Francisco de Quadros Maciel (1137279)
+João Gabriel Motta (1137220)
